@@ -18,7 +18,7 @@ images:
     - floor: .%internal/bootstrap-floor
       sources: []
       build: |
-        fakeroot debootstrap --variant=minbase --arch=amd64 focal $DESTDIR https://artifactory.infra.corp.arista.io/artifactory/bsn-external-dependencies/releases.ubuntu.com/focal/ubuntu-20.04.6-live-server-amd64.iso phttps://artifactory.infra.corp.arista.io/bsn-docker-internal/ubuntu
+        fakeroot debootstrap --variant=minbase --arch=amd64 focal $DESTDIR https://artifactory.infra.corp.arista.io/artifactory/bsn-external-dependencies/releases.ubuntu.com/
 
   test/bootstrap:
     units:

@@ -1,1 +1,7 @@
-{}
+{
+  "barney.ci/alpine": {
+    "commit": "a772f65dfe30a8b2c1bbbddde6832807d2045e1f",
+    "url": "https://horseland-gerrit.infra.corp.arista.io/alpine"
+  }
+}
+
