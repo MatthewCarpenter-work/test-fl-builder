@@ -1,4 +1,33 @@
 images:
+  internal/bootstrap-floor:
+    units:
+    - image: barney.ci/alpine%pkg/debootstrap
+    - image: barney.ci/alpine%pkg/coreutils
+    - image: barney.ci/alpine%pkg/util-linux
+    - image: barney.ci/alpine%pkg/grep
+    - image: barney.ci/alpine%pkg/perl
+    - image: barney.ci/alpine%pkg/wget
+    - image: barney.ci/alpine%pkg/fakeroot
+    - image: barney.ci/alpine%pkg/sed
+    - image: barney.ci/alpine%network
+
+  minbase:
+    description: |
+      Debian bootstrap
+    units:
+    - floor: .%internal/bootstrap-floor
+      sources: []
+      build: |
+        fakeroot debootstrap --variant=minbase --arch=amd64 focal $DESTDIR https://artifactory.infra.corp.arista.io/artifactory/bsn-external-dependencies/releases.ubuntu.com/focal/ubuntu-20.04.6-live-server-amd64.iso phttps://artifactory.infra.corp.arista.io/bsn-docker-internal/ubuntu
+
+  test/bootstrap:
+    units:
+    - floor: .%minbase
+      sources: []
+      build: |
+        grep Debian /etc/os-release
   hello:
     units:
-      - build: echo "Hello" > /dest/greeting
+    - floor: .%minbase
+      build: |
+        echo "Hello matt" > /dest/greeting
